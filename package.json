@@ -53,9 +53,10 @@
     "react-dom": "^0.14.8",
     "react-redux": "latest",
     "react-router": "latest",
+    "react-router-redux": "^4.0.2",
     "react-tap-event-plugin": "^0.2.2",
     "redux": "latest",
-    "redux-react-router": "latest",
+    "redux-react-router": "^1.0.0-beta3",
     "redux-thunk": "latest"
   }
 }

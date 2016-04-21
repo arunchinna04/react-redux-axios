@@ -9,6 +9,7 @@ import Error from '../components/Error';
 import ExpectedError from '../components/ExpectedError';
 import Home from '../components/Home';
 import Login from '../components/Login';
+import DashBoard from '../components/DashBoard';
 import configureStore from '../store';
 const store = configureStore();
 import {fetchData} from '../actions/actions';
@@ -25,16 +26,20 @@ function loadBadData(){
   store.dispatch(fetchData('https://restcountries.eu/rest/v1/callingcode/123123'));
 };
 
+function loadMenu(){
+  store.dispatch(fetchData('http://localhost:8011/menu'));
+}
+
 class Root extends Component {
 
   render() {
     return (
       <Provider store={store}>  
         <ReduxRouter>
-            <Route history={history}>
+            <Route history={browserHistory}>
                 <Route path="/" component={Login} />
-                <Route  path="/app" component={App}>
-                    <IndexRoute component={Countries}/>
+                <Route  path="/app" component={App} onEnter={loadMenu}>
+                    <IndexRoute component={DashBoard}/>
                     <Route path='students' component={Home} />
                     <Route path='countries' component={Countries} onEnter={loadData} />
                     <Route path='othercountry' component={ExpectedError}  onEnter={loadBadData}/>

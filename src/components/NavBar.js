@@ -2,30 +2,46 @@ import React, {Component} from 'react';
 
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
+import {AppBar,LeftNav,MenuItem,List,ListItem  } from 'material-ui';
 
-@connect(state => ({routerState: state.router}))
+import { browserHistory } from 'react-router';
+
+@connect(state => ({MenuItem: state.example.data}))
 class NavBar extends Component{
-	constructor(props){
-		super(props);
-	}
+	
+
+	constructor(props) {
+     super(props);
+     this.state = {open: false};
+    }
+
+  handleToggle = () => this.setState({open: !this.state.open});
 
 	render() {
+		const {MenuItem} = this.props;
+		
 		return (
-			<nav className='navbar navbar-inverse navbar-static-top'>
-				<div className='container-fluid'>
-					<div className='navbar-header'>
-						<Link className='navbar-brand' to='/'>React Redux Axios</Link>
-					</div>
-					<div id='navbar'>
-						<ul className='nav navbar-nav'>
-							<li><Link to='/countries'>Countries</Link></li>
-							<li><Link to='/othercountry'>Other Country</Link></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
+		     <div>
+			      <AppBar title="Welcome" onLeftIconButtonTouchTap={this.handleToggle} />    
+			        <LeftNav
+			          open={this.state.open}
+			          ref="leftNav"
+			          className = "left-nav"
+			          docked={true}>
+			            <div onClick={this.handleToggle}>
+			                <List>
+						       {MenuItem.map(menu => (
+                       <ListItem  onClick={() => browserHistory.push(menu.route)} primaryTogglesNestedList={true}>{menu.name}</ListItem>
+                  ))} 
+						    </List>
+			            </div>          
+                    </LeftNav>
+                    
+			     </div>
 		)
 	}
 };
 
 export default NavBar;
+
+

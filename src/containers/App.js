@@ -22,6 +22,8 @@ class App extends Component {
 				<NavBar />
 				<div className='container'>
 				{example.isLoading ? <Spinner /> : children}
+            
+		
 				</div>
 			</div>
 		);

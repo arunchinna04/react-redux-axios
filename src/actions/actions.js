@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import axios from 'axios';
-import { pushState } from 'redux-react-router';
+import { push } from 'redux-react-router';
 
 function requestData() {
 	return {type: types.REQ_DATA}
@@ -33,6 +33,7 @@ export function fetchData(url) {
 				dispatch(receiveData(response.data));
 			})
 			.catch(function(response){
+
 				dispatch(receiveError(response.data));
 				dispatch(pushState(null,'/error'));
 			})
