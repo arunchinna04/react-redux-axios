@@ -22,6 +22,7 @@ function receiveError(json) {
 
 export function fetchData(url) {
 	return function(dispatch) {
+		
 		dispatch(requestData());
 		return axios({
 			url: url,

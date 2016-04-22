@@ -5,8 +5,9 @@ import {connect} from 'react-redux';
 import {AppBar,LeftNav,MenuItem,List,ListItem  } from 'material-ui';
 
 import { browserHistory } from 'react-router';
+import { pushState } from 'redux-react-router';
 
-@connect(state => ({MenuItem: state.example.data}))
+@connect(state => ({routerState: state.router, MenuItem: state.example.data}))
 class NavBar extends Component{
 	
 
@@ -31,7 +32,7 @@ class NavBar extends Component{
 			            <div onClick={this.handleToggle}>
 			                <List>
 						       {MenuItem.map(menu => (
-                       <ListItem  onClick={() => browserHistory.push(menu.route)} primaryTogglesNestedList={true}>{menu.name}</ListItem>
+                       <ListItem  onClick={() => this.props.dispatch(pushState(null,menu.route))} primaryTogglesNestedList={true}>{menu.name}</ListItem>
                   ))} 
 						    </List>
 			            </div>          

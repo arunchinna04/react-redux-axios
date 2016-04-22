@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Country from './Country';
 
-@connect(state => ({data: state.example.data}))
+@connect(state => ({routerState: state.router,data: state.example.data}))
 
 class Countries extends Component{
 	constructor(props){
