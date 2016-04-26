@@ -7,7 +7,7 @@ import {AppBar,LeftNav,MenuItem,List,ListItem  } from 'material-ui';
 import { browserHistory } from 'react-router';
 import { pushState } from 'redux-react-router';
 
-@connect(state => ({routerState: state.router, MenuItem: state.example.data}))
+@connect(state => ({MenuItem: state.menu.data}))
 class NavBar extends Component{
 	
 
